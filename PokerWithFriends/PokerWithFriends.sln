@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWithFriends.Service", "PokerWithFriends.Service\PokerWithFriends.Service.csproj", "{EFB887CD-E570-4A1D-BA36-7D784ACC78D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWithFriends.Web", "PokerWithFriends.Web\PokerWithFriends.Web.csproj", "{D8A32DA1-D772-435D-A051-626EDA2E1AAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFB887CD-E570-4A1D-BA36-7D784ACC78D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB887CD-E570-4A1D-BA36-7D784ACC78D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB887CD-E570-4A1D-BA36-7D784ACC78D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB887CD-E570-4A1D-BA36-7D784ACC78D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A32DA1-D772-435D-A051-626EDA2E1AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A32DA1-D772-435D-A051-626EDA2E1AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A32DA1-D772-435D-A051-626EDA2E1AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A32DA1-D772-435D-A051-626EDA2E1AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C6EA8E0-8968-4E72-B3B0-1FDDB010F48B}
+	EndGlobalSection
+EndGlobal
