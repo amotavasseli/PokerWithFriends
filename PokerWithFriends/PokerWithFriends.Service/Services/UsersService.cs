@@ -91,9 +91,7 @@ namespace PokerWithFriends.Service.Services
 
                 cmd.ExecuteNonQuery();
 
-                int newId = (int)cmd.Parameters["@id"].Value;
-
-                return newId;
+                return (int)cmd.Parameters["@id"].Value;
             }
         }
 

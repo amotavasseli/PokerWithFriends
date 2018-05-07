@@ -1,11 +1,23 @@
 import React from 'react';
-import { FormGroup, FormControl, ControlLabel, Button, ButtonToolbar, Grid, Row, Col } from 'react-bootstrap';
+import {createNewUser} from './UserServices';
+import { 
+    FormGroup, 
+    FormControl, 
+    ControlLabel, 
+    Button, 
+    ButtonToolbar, 
+    Grid, 
+    Row, 
+    Col } 
+    from 'react-bootstrap';
+
 
 class Register extends React.Component {
     state = {
         firstName: "",
         lastName: "",
         password: "",
+        cPassword: "",
         email: "",
         username: ""
     }
@@ -21,12 +33,19 @@ class Register extends React.Component {
             this.setState({ email: input.target.value });
         else if (inputType === "password")
             this.setState({ password: input.target.value });
+        else if (inputType === "cPassword")
+            this.setState({ cPassword: input.target.value });
         else if (inputType === "username")
             this.setState({ username: input.target.value });
     }
 
     handleSubmit = info => {
         console.log(this.state);
+        createNewUser(this.state).then(
+            response => console.log(response),
+            error => console.log(error)
+        )
+
     }
     handleClear = () => {
         this.setState({
@@ -36,6 +55,14 @@ class Register extends React.Component {
             email: "",
             username: ""
         });
+    }
+    checkPassword = () => {
+        if(this.state.cPassword !== this.state.password){
+            return "error"
+        } else if(this.state.cPassword === this.state.password && this.state.cPassword != "") {
+            return "success";
+        } else 
+            return null;
     }
 
     render() {
@@ -74,7 +101,7 @@ class Register extends React.Component {
                             <FormGroup>
                                 <ControlLabel>Email</ControlLabel>
                                 <FormControl
-                                    type="text"
+                                    type="email"
                                     value={this.state.email}
                                     placeholder="Email"
                                     onChange={e => this.handleInput(e, "email")}
@@ -83,10 +110,22 @@ class Register extends React.Component {
                             <FormGroup>
                                 <ControlLabel>Password</ControlLabel>
                                 <FormControl
-                                    type="text"
+                                    type="password"
                                     value={this.state.password}
                                     placeholder="Password"
                                     onChange={e => this.handleInput(e, "password")}
+                                />
+                            </FormGroup>
+                            <FormGroup
+                                controlId="formBasicText"
+                                validationState={this.checkPassword()}
+                            >
+                                <ControlLabel>Confirm Password</ControlLabel>
+                                <FormControl
+                                    type="password"
+                                    value={this.state.cPassword}
+                                    placeholder="Confirm Password"
+                                    onChange={e => this.handleInput(e, "cPassword")}
                                 />
                             </FormGroup>
                             <ButtonToolbar className="reg-button">
