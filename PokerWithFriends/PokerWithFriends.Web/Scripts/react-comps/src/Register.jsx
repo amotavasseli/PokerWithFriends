@@ -40,11 +40,22 @@ class Register extends React.Component {
     }
 
     handleSubmit = info => {
-        console.log(this.state);
-        createNewUser(this.state).then(
-            response => console.log(response),
-            error => console.log(error)
-        )
+        if(this.state.password === this.state.cPassword){
+            const userInfo = {
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                password: this.state.password,
+                email: this.state.email,
+                username: this.state.username
+            }
+            createNewUser(userInfo).then(
+                response => {
+                    console.log(response);
+                    this.handleClear();
+                },
+                error => console.log(error)
+            )
+        }
 
     }
     handleClear = () => {
@@ -59,7 +70,7 @@ class Register extends React.Component {
     checkPassword = () => {
         if(this.state.cPassword !== this.state.password){
             return "error"
-        } else if(this.state.cPassword === this.state.password && this.state.cPassword != "") {
+        } else if(this.state.cPassword === this.state.password && this.state.cPassword !== "") {
             return "success";
         } else 
             return null;
@@ -67,7 +78,7 @@ class Register extends React.Component {
 
     render() {
         return (
-            <Grid className="registration-form">
+            <Grid className="login-registration-form">
                 <Row>
                     <Col xs={10} sm={8} md={6} xsOffset={1} smOffset={2} mdOffset={3}>
                         <form>
@@ -107,7 +118,10 @@ class Register extends React.Component {
                                     onChange={e => this.handleInput(e, "email")}
                                 />
                             </FormGroup>
-                            <FormGroup>
+                            <FormGroup
+                                controlId="formPassword"
+                                validationState={this.checkPassword()}
+                            >
                                 <ControlLabel>Password</ControlLabel>
                                 <FormControl
                                     type="password"
@@ -117,7 +131,7 @@ class Register extends React.Component {
                                 />
                             </FormGroup>
                             <FormGroup
-                                controlId="formBasicText"
+                                controlId="formCPassword"
                                 validationState={this.checkPassword()}
                             >
                                 <ControlLabel>Confirm Password</ControlLabel>

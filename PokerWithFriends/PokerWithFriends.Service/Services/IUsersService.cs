@@ -11,5 +11,6 @@ namespace PokerWithFriends.Service.Services
         int Create(UserRequest req);
         void Update(UserUpdateRequest req);
         void Delete(int id);
+        User Login(LoginRequest login);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using PokerWithFriends.Service.Domains;
 using PokerWithFriends.Service.Requests;
 using PokerWithFriends.Service.Services;
+using PokerWithFriends.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,23 @@ namespace PokerWithFriends.Web.Controllers
             }
             usersService.Delete(id);
             return Request.CreateResponse(HttpStatusCode.OK, ModelState);
+        }
+
+        [HttpPost, Route("api/users/login")]
+        public HttpResponseMessage Login(LoginRequest login)
+        {
+            if (!ModelState.IsValid)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            try
+            {
+
+                User user = usersService.Login(login);
+                return Request.CreateResponse(HttpStatusCode.OK, user);
+            }
+            catch(InvalidLoginException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
     }
 }

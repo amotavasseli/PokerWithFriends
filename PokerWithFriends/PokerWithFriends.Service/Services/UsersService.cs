@@ -130,5 +130,31 @@ namespace PokerWithFriends.Service.Services
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public User Login(LoginRequest login)
+        {
+            using(SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "Users_getbylogin";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@email", login.Email);
+                cmd.Parameters.AddWithValue("@password", login.Password);
+
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    User user = new User();
+                    user.Id = reader.GetInt32(0);
+                    user.FirstName = reader.GetString(1);
+                    user.LastName = reader.GetString(2);
+                    user.Username = reader.GetString(3);
+                    user.DateCreated = reader.GetDateTime(4);
+                    user.DateModified = reader.GetDateTime(5);
+                    return user;
+                }
+            }
+        }
     }
 }

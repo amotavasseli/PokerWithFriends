@@ -52,7 +52,9 @@
     <Compile Include="ConnectionWrapper.cs" />
     <Compile Include="Domains\Match.cs" />
     <Compile Include="Domains\User.cs" />
+    <Compile Include="InvalidLoginException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\MatchRequest.cs" />
     <Compile Include="Requests\MatchUpdateRequest.cs" />
     <Compile Include="Requests\UserRequest.cs" />

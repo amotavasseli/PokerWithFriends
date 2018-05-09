@@ -20,3 +20,7 @@ export function updateUser(data){
 export function deleteUser(id){
     return axios.delete("http://localhost:56035/api/users/" + id);
 }
+
+export function getByLogin(login){
+    return axios.post("http://localhost:56035/api/users/login", login);
+}
