@@ -88,5 +88,12 @@ namespace PokerWithFriends.Web.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
+        [HttpGet, Route("api/users/matches/{id}")]
+        public HttpResponseMessage GetAllMatches(int id)
+        {
+            List<ChallengerMatches> matches = usersService.GetChallengerMatches(id);
+            return Request.CreateResponse(HttpStatusCode.OK, matches);
+        }
     }
 }

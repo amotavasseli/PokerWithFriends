@@ -156,5 +156,40 @@ namespace PokerWithFriends.Service.Services
                 }
             }
         }
+
+        public List<ChallengerMatches> GetAllMatches(int id)
+        {
+            using(SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "Users_Matches_getresultbyuserid";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
+
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    List<ChallengerMatches> matches = null;
+                    while (reader.Read())
+                    {
+                        ChallengerMatches match = new ChallengerMatches();
+                        match.UserId = reader.GetInt32(0);
+                        match.Email = reader.GetString(1);
+                        match.MatchId = reader.GetInt32(2);
+                        match.MatchGuid = reader.GetGuid(3);
+                        match.MatchStartTime = reader["m.match_start_time"] is DBNull ? (DateTime?)null : (DateTime?)reader["m.match_start_time"];
+                        match.Winner = reader.GetInt32(5);
+                        match.Opponents = reader["m.opponents"] is DBNull ? (int?[])null : (int?[])reader["m.opponents"];
+                        match.DateCreated = reader.GetDateTime(7);
+                        match.DateModified = reader.GetDateTime(8);
+
+                        if (matches == null)
+                            matches = new List<ChallengerMatches>();
+                        matches.Add(match);
+                    }
+                    return matches;
+                }
+            }
+        }
     }
 }

@@ -50,15 +50,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionWrapper.cs" />
+    <Compile Include="Domains\Contact.cs" />
     <Compile Include="Domains\Match.cs" />
     <Compile Include="Domains\User.cs" />
     <Compile Include="InvalidLoginException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\ContactRequest.cs" />
+    <Compile Include="Requests\ContactUpdateRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\MatchRequest.cs" />
     <Compile Include="Requests\MatchUpdateRequest.cs" />
     <Compile Include="Requests\UserRequest.cs" />
     <Compile Include="Requests\UserUpdateRequest.cs" />
+    <Compile Include="Services\ContactsService.cs" />
+    <Compile Include="Services\IContactsService.cs" />
     <Compile Include="Services\IMatchesService.cs" />
     <Compile Include="Services\IUsersService.cs" />
     <Compile Include="Services\MatchesService.cs" />

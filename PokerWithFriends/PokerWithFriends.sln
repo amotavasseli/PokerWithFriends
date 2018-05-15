@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWithFriends.Service", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWithFriends.Web", "PokerWithFriends.Web\PokerWithFriends.Web.csproj", "{D8A32DA1-D772-435D-A051-626EDA2E1AAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWithFriends.Test", "PokerWithFriends.Test\PokerWithFriends.Test.csproj", "{13235B14-FA2D-407C-B85F-3173C135C5AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D8A32DA1-D772-435D-A051-626EDA2E1AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A32DA1-D772-435D-A051-626EDA2E1AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8A32DA1-D772-435D-A051-626EDA2E1AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13235B14-FA2D-407C-B85F-3173C135C5AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13235B14-FA2D-407C-B85F-3173C135C5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13235B14-FA2D-407C-B85F-3173C135C5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13235B14-FA2D-407C-B85F-3173C135C5AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

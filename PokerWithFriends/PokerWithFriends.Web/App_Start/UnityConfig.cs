@@ -44,6 +44,7 @@ namespace PokerWithFriends.Web
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IUsersService, UsersService>();
+            container.RegisterType<IMatchesService, MatchesService>();
         }
     }
 }
