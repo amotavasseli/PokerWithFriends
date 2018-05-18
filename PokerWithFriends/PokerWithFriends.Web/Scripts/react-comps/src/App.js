@@ -10,7 +10,8 @@ import {
   Col, 
   ToggleButtonGroup} 
   from 'react-bootstrap';
-//import {BrowserRouter, Link, Route} from 'react-router-dom';
+import store from './store';
+import {Provider} from 'react-redux';
 
 class App extends Component {
   state = {
@@ -30,30 +31,29 @@ class App extends Component {
 
   render() {
     return (
-      //<BrowserRouter>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Poker With Friends</h1>
         </header>
-        
-          {/* <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} /> */}
-          <Grid>
-            <Row>
-              <Col xs={10} sm={8} md={6} xsOffset={1} smOffset={2} mdOffset={3}>
-                <ToggleButtonGroup type="radio" name="options" defaultValue={1} justified>
-                  <ToggleButton value={1} bsStyle="info" bsSize="large" block onClick={() => this.handleLogin()}>Login</ToggleButton>
-                  <ToggleButton value={2} bsStyle="info" bsSize="large" block onClick={() => this.handleRegister()}>Register</ToggleButton>
-                </ToggleButtonGroup>
-              </Col>
-            </Row>
-          </Grid>
-          {
-            this.state.login ? <Login /> : <Register />
-          }
+          <Provider store={store}>
+            <React.Fragment>
+              <Grid>
+                <Row>
+                  <Col xs={10} sm={8} md={6} xsOffset={1} smOffset={2} mdOffset={3}>
+                    <ToggleButtonGroup type="radio" name="options" defaultValue={1} justified>
+                      <ToggleButton value={1} bsStyle="info" bsSize="large" block onClick={() => this.handleLogin()}>Login</ToggleButton>
+                      <ToggleButton value={2} bsStyle="info" bsSize="large" block onClick={() => this.handleRegister()}>Register</ToggleButton>
+                    </ToggleButtonGroup>
+                  </Col>
+                </Row>
+              </Grid>
+              {
+                this.state.login ? <Login /> : <Register />
+              }
+            </React.Fragment>
+          </Provider>
       </div>
-       // </BrowserRouter>
     );
   }
 }

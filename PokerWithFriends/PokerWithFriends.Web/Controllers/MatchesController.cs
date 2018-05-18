@@ -1,4 +1,5 @@
-﻿using PokerWithFriends.Service.Domains;
+﻿using PokerWithFriends.Service;
+using PokerWithFriends.Service.Domains;
 using PokerWithFriends.Service.Requests;
 using PokerWithFriends.Service.Services;
 using System;
@@ -20,20 +21,24 @@ namespace PokerWithFriends.Web.Controllers
         public MatchesController(IMatchesService matchesService)
         {
             this.matchesService = matchesService;
+            
         }
 
+        [HttpGet, Route("api/matches")]
         public HttpResponseMessage GetAll()
         {
             List<Match> matches = matchesService.GetAllMatches();
             return Request.CreateResponse(HttpStatusCode.OK, matches);
         }
 
+        [HttpGet, Route("api/matches/{id}")]
         public HttpResponseMessage GetById(int id)
         {
             Match match = matchesService.GetMatchById(id);
             return Request.CreateResponse(HttpStatusCode.OK, match);
         }
 
+        [HttpPost, Route("api/matches")]
         public HttpResponseMessage Create(MatchRequest req)
         {
             if (!ModelState.IsValid)
@@ -42,6 +47,7 @@ namespace PokerWithFriends.Web.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, id);
         }
 
+        [HttpPut, Route("api/matches/{id}")]
         public HttpResponseMessage Update(MatchUpdateRequest req)
         {
             if (!ModelState.IsValid)
@@ -50,12 +56,20 @@ namespace PokerWithFriends.Web.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, "Updated");
         }
 
+        [HttpDelete, Route("api/matches/{id}")]
         public HttpResponseMessage Delete(int id)
         {
             if (!ModelState.IsValid)
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             matchesService.DeleteMatch(id);
             return Request.CreateResponse(HttpStatusCode.OK, "Deleted");
+        }
+
+        [HttpGet, Route("api/matches/cards")]
+        public HttpResponseMessage GetCards()
+        {
+            List<Card> cards = new HandHeirarchy().Deck();
+            return Request.CreateResponse(HttpStatusCode.OK, cards);
         }
     }
 }

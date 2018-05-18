@@ -157,7 +157,7 @@ namespace PokerWithFriends.Service.Services
             }
         }
 
-        public List<ChallengerMatches> GetAllMatches(int id)
+        public List<ChallengerMatches> GetChallengerMatches(int id)
         {
             using(SqlConnection con = new SqlConnection(connectionString))
             {

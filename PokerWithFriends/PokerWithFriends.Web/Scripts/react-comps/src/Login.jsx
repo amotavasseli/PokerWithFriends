@@ -10,6 +10,8 @@ import {
     Col } 
     from 'react-bootstrap';
 import {getByLogin} from "./UserServices";
+import ReactDOM from 'react-dom';
+import Home from "./Home";
 
 class Login extends React.Component {
 
@@ -28,7 +30,14 @@ class Login extends React.Component {
     handleLogin = () => {
         console.log(this.state);
         getByLogin(this.state).then(
-            response => console.log(response),
+            response => {
+                console.log(response);
+                ReactDOM.render(
+                    <Home userdata={response} />,
+                    document.getElementById("root")
+                );
+
+            },
             error => console.log(error)
         )
     }
