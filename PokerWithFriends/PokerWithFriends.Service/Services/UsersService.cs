@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BCr = BCrypt.Net;
 
 namespace PokerWithFriends.Service.Services
 {
@@ -85,8 +86,8 @@ namespace PokerWithFriends.Service.Services
                 cmd.Parameters.AddWithValue("@last_name", req.LastName);
                 cmd.Parameters.AddWithValue("@email", req.Email);
                 cmd.Parameters.AddWithValue("@username", req.Username);
-                cmd.Parameters.AddWithValue("@password", req.Password);
-
+                string hashPassword = BCr.BCrypt.HashPassword(req.Password);
+                cmd.Parameters.AddWithValue("@password", hashPassword);
                 cmd.Parameters.Add("@id", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 cmd.ExecuteNonQuery();
@@ -140,7 +141,6 @@ namespace PokerWithFriends.Service.Services
                 cmd.CommandText = "Users_getbylogin";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@email", login.Email);
-                cmd.Parameters.AddWithValue("@password", login.Password);
 
                 using(SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -150,8 +150,15 @@ namespace PokerWithFriends.Service.Services
                     user.FirstName = reader.GetString(1);
                     user.LastName = reader.GetString(2);
                     user.Username = reader.GetString(3);
-                    user.DateCreated = reader.GetDateTime(4);
-                    user.DateModified = reader.GetDateTime(5);
+                    string passwordHash = reader.GetString(4);
+                    user.DateCreated = reader.GetDateTime(5);
+                    user.DateModified = reader.GetDateTime(6);
+
+                    if (!BCr.BCrypt.Verify(login.Password, passwordHash))
+                        throw new InvalidLoginException(("Incorrect Password"));
+                    if (user == null)
+                        throw new InvalidLoginException("Incorrect Email");
+
                     return user;
                 }
             }
