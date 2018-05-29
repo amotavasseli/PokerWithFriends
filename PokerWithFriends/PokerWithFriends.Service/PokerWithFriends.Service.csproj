@@ -56,6 +56,7 @@
     <Compile Include="ConnectionWrapper.cs" />
     <Compile Include="Domains\ChallengerMatches.cs" />
     <Compile Include="Domains\Contact.cs" />
+    <Compile Include="Domains\DateMadeModified.cs" />
     <Compile Include="Domains\Match.cs" />
     <Compile Include="Domains\User.cs" />
     <Compile Include="HandHeirarchy.cs" />

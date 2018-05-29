@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokerWithFriends.Service.Domains
 {
-    public class Match
+    public class Match : DateMadeModified
     {
         public int Id { get; set; }
         public Guid MatchGuid { get; set; }
@@ -14,7 +14,5 @@ namespace PokerWithFriends.Service.Domains
         public DateTime? MatchStartTime { get; set; }
         public int? Winner { get; set; }
         public int?[] Opponents { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
     }
 }

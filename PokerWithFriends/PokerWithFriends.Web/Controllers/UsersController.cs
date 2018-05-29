@@ -89,8 +89,8 @@ namespace PokerWithFriends.Web.Controllers
             }
         }
 
-        [HttpGet, Route("api/users/matches/{id}")]
-        public HttpResponseMessage GetAllMatches(int id)
+        [HttpGet, Route("api/users/{id}/matches")]
+        public HttpResponseMessage GetChallengerMatchesById(int id)
         {
             List<ChallengerMatches> matches = usersService.GetChallengerMatches(id);
             return Request.CreateResponse(HttpStatusCode.OK, matches);

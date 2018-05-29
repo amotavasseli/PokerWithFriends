@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace PokerWithFriends.Service.Domains
 {
-    public class Contact
+    public class Contact : DateMadeModified
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
     }
 }

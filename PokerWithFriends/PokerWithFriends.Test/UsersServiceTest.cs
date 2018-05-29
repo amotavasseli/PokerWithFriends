@@ -23,10 +23,10 @@ namespace PokerWithFriends.Test
         public void TestUsersGetById()
         {
             var usersService = new UsersService();
-            var user = usersService.GetUserById(1012);
+            var user = usersService.GetUserById(1018);
             Assert.IsTrue(user.FirstName == "Arian");
             Assert.IsTrue(user.LastName == "Motavasseli");
-            Assert.IsTrue(user.Email == "email@email.com");
+            Assert.IsTrue(user.Email == "amotavasseli@gmail.com");
         }
     }
 }

@@ -182,13 +182,15 @@ namespace PokerWithFriends.Service.Services
                         ChallengerMatches match = new ChallengerMatches();
                         match.UserId = reader.GetInt32(0);
                         match.Email = reader.GetString(1);
-                        match.MatchId = reader.GetInt32(2);
-                        match.MatchGuid = reader.GetGuid(3);
-                        match.MatchStartTime = reader["m.match_start_time"] is DBNull ? (DateTime?)null : (DateTime?)reader["m.match_start_time"];
-                        match.Winner = reader.GetInt32(5);
-                        match.Opponents = reader["m.opponents"] is DBNull ? (int?[])null : (int?[])reader["m.opponents"];
-                        match.DateCreated = reader.GetDateTime(7);
-                        match.DateModified = reader.GetDateTime(8);
+                        match.Username = reader.GetString(2);
+                        match.MatchId = reader.GetInt32(3);
+                        match.MatchGuid = reader.GetGuid(4);
+                        var startTime = reader["match_start_time"] is DBNull ? (DateTime?)null : (DateTime?)reader["match_start_time"];
+                        match.MatchStartTime = startTime;
+                        match.Winner = reader["winner"] is DBNull ? (int?)null : (int?)reader["winner"];
+                        match.Opponents = reader["opponents"] is DBNull ? (int?[])null : (int?[])reader["opponents"];
+                        match.DateCreated = reader.GetDateTime(8);
+                        match.DateModified = reader.GetDateTime(9);
 
                         if (matches == null)
                             matches = new List<ChallengerMatches>();

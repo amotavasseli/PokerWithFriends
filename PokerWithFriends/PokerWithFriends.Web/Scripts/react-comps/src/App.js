@@ -10,7 +10,7 @@ import {
   Col, 
   ToggleButtonGroup} 
   from 'react-bootstrap';
-import store from './store';
+import store from './store.js';
 import {Provider} from 'react-redux';
 
 class App extends Component {

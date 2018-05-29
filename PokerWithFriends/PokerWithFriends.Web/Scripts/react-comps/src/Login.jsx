@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { 
     FormGroup, 
     FormControl, 
@@ -9,9 +9,10 @@ import {
     Row, 
     Col } 
     from 'react-bootstrap';
-import {getByLogin} from "./UserServices";
+import {getByLogin} from './UserServices';
 import ReactDOM from 'react-dom';
-import Home from "./Home";
+import Home from './Home';
+import {getMatchesByUserId} from './MatchServices';
 
 class Login extends React.Component {
 
@@ -32,10 +33,18 @@ class Login extends React.Component {
         getByLogin(this.state).then(
             response => {
                 console.log(response);
-                ReactDOM.render(
-                    <Home userdata={response} />,
-                    document.getElementById("root")
+                getMatchesByUserId(response.data.Id).then(
+                    response => {
+                        console.log(response.data);
+                        ReactDOM.render(
+                            <Home userdata={response.data} />,
+                            document.getElementById("root")
+                        );
+                    },
+                    error => console.log(error)
                 );
+                
+               
 
             },
             error => console.log(error)
