@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Register from './Register';
 import Login from './Login';
@@ -10,8 +9,6 @@ import {
   Col, 
   ToggleButtonGroup} 
   from 'react-bootstrap';
-import store from './store.js';
-import {Provider} from 'react-redux';
 
 class App extends Component {
   state = {
@@ -32,11 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Poker With Friends</h1>
-        </header>
-          <Provider store={store}>
+          <div id="home">
             <React.Fragment>
               <Grid>
                 <Row>
@@ -52,7 +45,7 @@ class App extends Component {
                 this.state.login ? <Login /> : <Register />
               }
             </React.Fragment>
-          </Provider>
+          </div>
       </div>
     );
   }

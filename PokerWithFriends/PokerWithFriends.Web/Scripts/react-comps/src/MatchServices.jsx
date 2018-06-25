@@ -9,5 +9,5 @@ export function createMatch(match){
 }
 
 export function deleteMatch(id){
-    return axios.delete("http://localhost:56035/api/users/matches/" + id);
+    return axios.delete("http://localhost:56035/api/matches/" + id);
 }
