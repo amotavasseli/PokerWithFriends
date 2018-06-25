@@ -38,7 +38,7 @@ class Login extends React.Component {
                 getMatchesByUserId(response.data.Id).then(
                     response => {
                         console.log(response.data);
-                        this.props.dispatch(loadMatches(response.data));
+                        this.props.loadMatches(response.data);
                         ReactDOM.render(
                             <Home />,
                             document.getElementById("home")
@@ -88,9 +88,14 @@ class Login extends React.Component {
         )
     }
 }
+function mapDispatchToProps(dispatch){
+    return {
+        loadMatches: matches => dispatch(loadMatches(matches))
+    }
+}
 function mapStateToProps(state, ownProps){
     return {
         matches: state.matches
     };
 }
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
