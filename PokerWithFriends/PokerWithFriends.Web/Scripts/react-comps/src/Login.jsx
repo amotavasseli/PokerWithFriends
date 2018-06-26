@@ -10,7 +10,6 @@ import {
     Col } 
     from 'react-bootstrap';
 import {getByLogin} from './UserServices';
-import ReactDOM from 'react-dom';
 import Home from './Home';
 import {getMatchesByUserId} from './MatchServices';
 import {connect} from 'react-redux';

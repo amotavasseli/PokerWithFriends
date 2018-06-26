@@ -14,7 +14,7 @@ class Home extends React.Component {
         deleteMatch(id).then(
             response => {
                 console.log(response);
-                this.props.delete(index);
+                this.props.deleteMatch(index);
             },
             error => console.log(error)
         );
@@ -47,11 +47,10 @@ function mapStateToProps(state) {
     };
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//        // addMatch: task => dispatch({ type: "add match", task: task }),
-//         delete: index => dispatch({ type: "delete match", index: index })
-//     };
-// }
-//export default connect(mapStateToProps, mapDispatchToProps)(Home);
-export default connect(mapStateToProps)(Home);
+function mapDispatchToProps(dispatch) {
+    return {
+        addMatch: task => dispatch({ type: "add match", task: task }),
+        deleteMatch: index => dispatch({ type: "delete match", index: index })
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
