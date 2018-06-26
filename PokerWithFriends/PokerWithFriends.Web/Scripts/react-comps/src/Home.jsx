@@ -1,5 +1,6 @@
 import React from 'react';
 import {deleteMatch} from './MatchServices';
+import {connect} from 'react-redux';
 
 class Home extends React.Component {
     state = {
@@ -28,9 +29,9 @@ class Home extends React.Component {
                 {
                     this.props.matches && this.props.matches.map((match, index) => (
                         <div key={index}>
-                            <h3>Match Invitation ID: {match.MatchGuid}></h3>
-                            <h4>Match Start Time: {match.MatchStartTime}></h4>
-                            <h5>Opponents: {match.Opponents}></h5>
+                            <h3>Match Invitation ID: {match.MatchId}</h3>
+                            <h4>Match Start Time: {match.MatchStartTime}</h4>
+                            <h5>GUID: {match.MatchGuid}</h5>
                             <button onClick={() => this.deleteMatch(match.MatchId, index)}>Delete Match</button>
                         </div>
                     ))
@@ -40,11 +41,11 @@ class Home extends React.Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         matches: state.matches
-//     };
-// }
+function mapStateToProps(state) {
+    return {
+        matches: state.matches
+    };
+}
 
 // function mapDispatchToProps(dispatch) {
 //     return {
@@ -53,4 +54,4 @@ class Home extends React.Component {
 //     };
 // }
 //export default connect(mapStateToProps, mapDispatchToProps)(Home);
-export default Home;
+export default connect(mapStateToProps)(Home);

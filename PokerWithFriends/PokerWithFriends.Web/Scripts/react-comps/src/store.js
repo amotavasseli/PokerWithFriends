@@ -16,7 +16,14 @@ function reducer(store, action){
         };
     }
 
-    if(action.type === "add match" || action.type === "load matches"){
+    if(action.type === "load matches"){
+        return {
+            ...store,
+            matches: action.matches
+        }
+    }
+
+    if(action.type === "add match"){
         return {
             ...store, // bring in everything from previous state
             matches: [...store.matches, {task: action.task}] // add new game to state
@@ -32,4 +39,4 @@ function reducer(store, action){
     }
 }
 
-export default createStore(reducer);
+export default createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

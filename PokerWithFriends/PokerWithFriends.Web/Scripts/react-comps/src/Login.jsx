@@ -14,7 +14,7 @@ import ReactDOM from 'react-dom';
 import Home from './Home';
 import {getMatchesByUserId} from './MatchServices';
 import {connect} from 'react-redux';
-import {loadMatches} from './actions/matchActions';
+
 
 class Login extends React.Component {
 
@@ -39,10 +39,7 @@ class Login extends React.Component {
                     response => {
                         console.log(response.data);
                         this.props.loadMatches(response.data);
-                        ReactDOM.render(
-                            <Home />,
-                            document.getElementById("home")
-                        );
+                        this.props.history.push("/home");
                     },
                     error => console.log(error)
                 );
@@ -90,12 +87,7 @@ class Login extends React.Component {
 }
 function mapDispatchToProps(dispatch){
     return {
-        loadMatches: matches => dispatch(loadMatches(matches))
+        loadMatches: matches => dispatch({type: "load matches", matches})
     }
 }
-function mapStateToProps(state, ownProps){
-    return {
-        matches: state.matches
-    };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

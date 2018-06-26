@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Register from './Register';
 import Login from './Login';
+import Home from './Home';
+import {Route, Redirect, Switch} from 'react-router-dom';
 import { 
   ToggleButton,
   Grid, 
@@ -19,6 +21,7 @@ class App extends Component {
     this.setState({
       login: true
     })
+    //this.props.history.push("/home")
   }
   handleRegister = () => {
     this.setState({
@@ -29,7 +32,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <div id="home">
+        <div>
+          <Switch>
+            <Route path="/regiser" component={Register} />
+            <Route path="/login" component={Login} />
+            <Route path="/home" component={Home} />
+            <Redirect to="/login" />
+          </Switch>
+        </div>
+          {/* <div id="home">
             <React.Fragment>
               <Grid>
                 <Row>
@@ -45,7 +56,7 @@ class App extends Component {
                 this.state.login ? <Login /> : <Register />
               }
             </React.Fragment>
-          </div>
+          </div> */}
       </div>
     );
   }
