@@ -7,7 +7,8 @@ class CreateMatch extends React.Component{
         matchStartTime: "",
         matchStartDate: "",
         winner: null,
-        opponents: [22555, 33432]
+        opponent: "",
+        opponents: [22555, 33432, 55555]
     }
 
     handleStartDate = date => {
@@ -18,7 +19,16 @@ class CreateMatch extends React.Component{
     }
 
     handleOpponents = opponent => {
-        this.setState({opponents: opponent.target.value})
+        // const previousOpponents = this.state.opponents;
+        // debugger;
+        // const currentOpponents = previousOpponents.push(opponent);
+        let newArr = [...this.state.opponents,opponent];
+        this.setState({opponents: newArr});
+    }
+    handleOpponent = opponent => this.setState({opponent: opponent.target.value});
+    handleAddOpponent = () => {
+        this.handleOpponents(this.state.opponent);
+        //this.setState({opponent: ""});
     }
 
     render(){
@@ -40,12 +50,13 @@ class CreateMatch extends React.Component{
                         value={this.state.matchStartTime} />
                 </div>
                 <div>
-                    <label>Opponents</label>
+                    <label>Opponent</label>
                     <input 
                         type="text"
-                        onChange={e => this.handleOpponents(e)}
-                        value={this.state.opponents}
+                        onChange={e => this.handleOpponent(e)}
+                        value={this.state.opponent}
                     />
+                    <button onClick={() => this.handleAddOpponent()}>Add Opponent</button>
                 </div>
                 <div>
                     {
