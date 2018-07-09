@@ -8,6 +8,7 @@ class Home extends React.Component {
     }
 
     addMatch = () => {
+        this.props.history.push("/createMatch");
     }
 
     deleteMatch = (id, index) => {

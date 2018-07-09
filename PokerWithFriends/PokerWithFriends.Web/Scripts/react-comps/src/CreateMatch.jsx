@@ -5,16 +5,20 @@ class CreateMatch extends React.Component{
     state = {
         challengerId: 1018,
         matchStartTime: "",
+        matchStartDate: "",
         winner: null,
-        opponents: []
+        opponents: [22555, 33432]
     }
 
-    handleStartTime = input => {
-        this.setState({matchStartTime: input.target.value})
+    handleStartDate = date => {
+        this.setState({matchStartDate: date.target.value})
+    }
+    handleStartTime = time => {
+        this.setState({matchStartTime: time.target.value})
     }
 
-    handleStartTime = input => {
-        this.setState({opponents: input.target.value})
+    handleOpponents = opponent => {
+        this.setState({opponents: opponent.target.value})
     }
 
     render(){
@@ -22,10 +26,17 @@ class CreateMatch extends React.Component{
             <div>
                 <h1>Create New Match</h1>
                 <div>
-                    <label>Start Time</label>
+                    <label>Start Date</label>
                     <input 
-                        type="text"
-                        onChange={e => this.handleStartTime(e)}
+                        type="date"
+                        onChange={e => this.handleStartDate(e)}
+                        value={this.state.matchStartDate} />
+                </div>
+                <div>
+                    <label>Start Time</label>
+                    <input
+                        type= "time"
+                        onChange = {e => this.handleStartTime(e)}
                         value={this.state.matchStartTime} />
                 </div>
                 <div>
@@ -35,6 +46,13 @@ class CreateMatch extends React.Component{
                         onChange={e => this.handleOpponents(e)}
                         value={this.state.opponents}
                     />
+                </div>
+                <div>
+                    {
+                        this.state.opponents && this.state.opponents.map((opponent, index) => (
+                            <h3 key={index}>{opponent}</h3>
+                        ))
+                    }
                 </div>
             </div>
         )

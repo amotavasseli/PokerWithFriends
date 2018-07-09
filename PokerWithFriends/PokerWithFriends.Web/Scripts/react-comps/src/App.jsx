@@ -3,14 +3,15 @@ import './App.css';
 import Register from './Register';
 import Login from './Login';
 import Home from './Home';
+import CreateMatch from './CreateMatch';
 import {Route, Redirect, Switch} from 'react-router-dom';
-import { 
-  ToggleButton,
-  Grid, 
-  Row, 
-  Col, 
-  ToggleButtonGroup} 
-  from 'react-bootstrap';
+// import { 
+//   ToggleButton,
+//   Grid, 
+//   Row, 
+//   Col, 
+//   ToggleButtonGroup} 
+//   from 'react-bootstrap';
 
 class App extends Component {
   state = {
@@ -37,6 +38,7 @@ class App extends Component {
             <Route path="/regiser" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
+            <Route path="/createMatch" component={CreateMatch} />
             <Redirect to="/login" />
           </Switch>
         </div>
