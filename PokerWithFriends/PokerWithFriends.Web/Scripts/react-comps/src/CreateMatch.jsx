@@ -19,16 +19,12 @@ class CreateMatch extends React.Component{
     }
 
     handleOpponents = opponent => {
-        // const previousOpponents = this.state.opponents;
-        // debugger;
-        // const currentOpponents = previousOpponents.push(opponent);
         let newArr = [...this.state.opponents,opponent];
         this.setState({opponents: newArr});
     }
     handleOpponent = opponent => this.setState({opponent: opponent.target.value});
     handleAddOpponent = () => {
         this.handleOpponents(this.state.opponent);
-        //this.setState({opponent: ""});
     }
 
     render(){
