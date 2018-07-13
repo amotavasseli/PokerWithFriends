@@ -5,7 +5,7 @@ export function getMatchesByUserId(id){
 }
 
 export function createMatch(match){
-    return axios.post("http://localhost:56035/api/users/matches", match);
+    return axios.post("http://localhost:56035/api/matches", match);
 }
 
 export function deleteMatch(id){

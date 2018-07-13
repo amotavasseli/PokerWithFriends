@@ -90,7 +90,7 @@ namespace PokerWithFriends.Service.Services
                 }
             }
         }
-
+        // CreateMatch should not require a param for winner. Fix this later. 
         public int CreateMatch(MatchRequest req)
         {
             using(SqlConnection con = new SqlConnection(connectionString))
@@ -102,8 +102,8 @@ namespace PokerWithFriends.Service.Services
 
                 cmd.Parameters.AddWithValue("@challenger_id", req.ChallengerId);
                 cmd.Parameters.AddWithValue("@match_start_time", req.MatchStartTime);
-                cmd.Parameters.AddWithValue("@winner", req.Winner);
-                cmd.Parameters.AddWithValue("@opponents", req.Opponents);
+                cmd.Parameters.AddWithValue("@winner", req.Winner ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@opponents", JsonConvert.SerializeObject(req.Opponents));
                 cmd.Parameters.Add("@id", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@id"].Value;
